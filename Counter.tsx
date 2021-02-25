@@ -1,5 +1,11 @@
-import React, { useState, createContext, Dispatch, SetStateAction, ReactNode, useContext } from "react";
-
+import React, { 
+  useState, 
+  createContext, 
+  Dispatch, 
+  SetStateAction, 
+  ReactNode, 
+  useContext 
+} from "react";
 
 interface ICounterContext {
   value: number;
@@ -23,7 +29,6 @@ export const useCounterValue = (): number => {
   const {value} = useContext(CounterContext);
   return value;
 }
-
 
 export const useCounterHandlerIncrement = () : () => void => {
   const {setValue} = useContext(CounterContext);
