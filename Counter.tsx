@@ -1,4 +1,4 @@
-import React, { useState, createContext, Dispatch, SetStateAction, ReactNode } from "react";
+import React, { useState, createContext, Dispatch, SetStateAction, ReactNode, useContext } from "react";
 
 
 interface ICounterContext {
@@ -18,3 +18,23 @@ const CounterProvider = ({children}: ICounterProviderProps) => {
     <CounterContext.Provider value={{value, setValue}}>{children}</CounterContext.Provider>
   )
 }
+
+export const useCounterValue = (): number => {
+  const {value} = useContext(CounterContext);
+  return value;
+}
+
+
+export const useCounterHandlerIncrement = () : () => void => {
+  const {setValue} = useContext(CounterContext);
+  const handleIncrement = () => setValue(state => state + 1);  
+  return handleIncrement;
+}
+
+export const useCounterHandlerDecrement = () : () => void => {
+  const {setValue} = useContext(CounterContext);
+  const handleDecrement = () => setValue(state => state - 1);
+  return handleDecrement;
+}
+
+export default CounterProvider;
